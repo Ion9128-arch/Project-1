@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign up · PlaceReady</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="auth-layout">
+    <section class="brand-panel" aria-hidden="true">
+      <div class="brand"><span class="brand-mark">🎓</span> PlaceReady</div>
+      <div>
+        <h1>Prepare for placements with real data.</h1>
+        <p>Create your free account to see which skills, certifications and projects actually move the needle for your branch and dream role.</p>
+        <ul class="brand-points">
+          <li>Built on historical placement outcomes</li>
+          <li>Compare yourself with students from colleges like yours</li>
+          <li>Your data stays private to your account</li>
+        </ul>
+      </div>
+      <div class="brand-footer">© 2026 PlaceReady</div>
+    </section>
+
+    <section class="form-panel">
+      <div class="form-card">
+        <h2>Create your account</h2>
+        <p class="subtitle">It takes less than a minute.</p>
+
+        <div id="form-alert" class="alert" role="alert" hidden></div>
+
+        <form id="signup-form" novalidate>
+          <div class="field" id="f-name">
+            <label for="name">Full name</label>
+            <input type="text" id="name" name="name" autocomplete="name" maxlength="100" required />
+            <div class="field-error" aria-live="polite"></div>
+          </div>
+
+          <div class="field" id="f-username">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="30" required aria-describedby="username-hint" />
+            <div class="hint" id="username-hint">3–30 characters. Letters, numbers, _ and . allowed.</div>
+            <div class="field-ok" aria-live="polite"></div>
+            <div class="field-error" aria-live="polite"></div>
+          </div>
+
+          <div class="field" id="f-email">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" autocapitalize="none" spellcheck="false" required aria-describedby="email-hint" />
+            <div class="hint" id="email-hint">Personal or college email (e.g. name@college.ac.in).</div>
+            <div class="field-error" aria-live="polite"></div>
+          </div>
+
+          <!-- College: searchable dropdown backed by the NIRF list + student-added colleges -->
+          <div class="field" id="f-college">
+            <label for="college-search" id="college-label">College</label>
+            <div class="input-wrap">
+              <input type="text" id="college-search" autocomplete="off" spellcheck="false"
+                     placeholder="Start typing, e.g. IIT Bombay, NIT Trichy, VIT"
+                     role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="college-list" />
+              <ul id="college-list" class="combo-list" role="listbox" aria-labelledby="college-label" hidden></ul>
+            </div>
+            <input type="hidden" id="college-id" name="college_id" />
+            <div class="selected-college" id="selected-college" hidden>
+              <span id="selected-college-text"></span>
+              <button type="button" class="link-btn" id="change-college">Change</button>
+            </div>
+            <div class="field-error" aria-live="polite"></div>
+            <div class="hint">Can't find your college? <button type="button" class="link-btn" id="open-add-college">Add it</button></div>
+
+            <div class="add-college" id="add-college" hidden>
+              <h3>Add your college</h3>
+              <p>It will be saved so other students from your college can find it next time.</p>
+              <div class="field" id="f-new-name">
+                <label for="new-college-name">College name</label>
+                <input type="text" id="new-college-name" maxlength="200" placeholder="Full official name" />
+                <div class="field-error" aria-live="polite"></div>
+              </div>
+              <div class="row-2">
+                <div class="field" id="f-new-city">
+                  <label for="new-college-city">City</label>
+                  <input type="text" id="new-college-city" maxlength="100" />
+                  <div class="field-error" aria-live="polite"></div>
+                </div>
+                <div class="field" id="f-new-state">
+                  <label for="new-college-state">State / UT</label>
+                  <select id="new-college-state"><option value="">Select…</option></select>
+                  <div class="field-error" aria-live="polite"></div>
+                </div>
+              </div>
+              <div class="actions">
+                <button type="button" class="btn btn-secondary btn-small" id="cancel-add-college">Cancel</button>
+                <button type="button" class="btn btn-primary btn-small" id="save-college">Add college</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="field" id="f-password">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <input type="password" id="password" name="password" autocomplete="new-password" required aria-describedby="pw-rules" />
+              <button type="button" class="toggle-password" data-target="password" aria-label="Show password">Show</button>
+            </div>
+            <div class="strength" aria-hidden="true"><span id="strength-bar"></span></div>
+            <ul class="pw-rules" id="pw-rules"></ul>
+            <div class="field-error" aria-live="polite"></div>
+          </div>
+
+          <div class="field" id="f-confirm">
+            <label for="confirm">Confirm password</label>
+            <div class="input-wrap">
+              <input type="password" id="confirm" name="confirm" autocomplete="new-password" required />
+              <button type="button" class="toggle-password" data-target="confirm" aria-label="Show password">Show</button>
+            </div>
+            <div class="field-error" aria-live="polite"></div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="signup-btn">Create account</button>
+          <p class="terms">By signing up, you agree to our Terms of Service and Privacy Policy.</p>
+        </form>
+
+        <p class="switch-auth">Already have an account? <a href="index.html">Log in</a></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/signup.js"></script>
+</body>
+</html>

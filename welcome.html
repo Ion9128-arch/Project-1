@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome · PlaceReady</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Temporary landing page after login. Replace with the Home Page in the next step
+       by changing AFTER_LOGIN_URL in js/config.js. -->
+  <main class="form-panel" style="min-height:100vh">
+    <div class="form-card">
+      <h2 id="greeting">Loading…</h2>
+      <p class="subtitle" id="details"></p>
+      <div id="form-alert" class="alert" role="alert" hidden></div>
+      <button class="btn btn-secondary" id="logout">Log out</button>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    (async function () {
+      if (!Api.Session.token()) return (location.href = "index.html");
+      try {
+        const u = await Api.me();
+        document.getElementById("greeting").textContent = `Hi ${u.name.split(" ")[0]}, you're logged in 🎉`;
+        document.getElementById("details").textContent =
+          `@${u.username} · ${u.email} · ${u.college.name}` + (u.college.nirf_rank ? ` (NIRF #${u.college.nirf_rank})` : "");
+      } catch (err) {
+        if (err.status === 401) { Api.Session.clear(); return (location.href = "index.html"); }
+        UI.showAlert(document.getElementById("form-alert"), err.message);
+      }
+    })();
+    document.getElementById("logout").addEventListener("click", () => {
+      Api.Session.clear();
+      location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

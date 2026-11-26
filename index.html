@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in · PlaceReady</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="auth-layout">
+    <section class="brand-panel" aria-hidden="true">
+      <div class="brand"><span class="brand-mark">🎓</span> PlaceReady</div>
+      <div>
+        <h1>Know what it takes to get placed.</h1>
+        <p>See how your skills, projects and internships compare with students who landed the roles you want.</p>
+        <ul class="brand-points">
+          <li>Find the skills that matter most for your target role</li>
+          <li>Track your profile against your branch and college tier</li>
+          <li>Get a clear plan to close your skill gaps</li>
+        </ul>
+      </div>
+      <div class="brand-footer">© 2026 PlaceReady</div>
+    </section>
+
+    <section class="form-panel">
+      <div class="form-card">
+        <h2>Welcome back</h2>
+        <p class="subtitle">Log in to continue to your dashboard.</p>
+
+        <div id="form-alert" class="alert" role="alert" hidden></div>
+
+        <form id="login-form" novalidate>
+          <div class="field" id="f-username">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required />
+            <div class="field-error" aria-live="polite"></div>
+          </div>
+
+          <div class="field" id="f-password">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <input type="password" id="password" name="password" autocomplete="current-password" required />
+              <button type="button" class="toggle-password" data-target="password" aria-label="Show password">Show</button>
+            </div>
+            <div class="field-error" aria-live="polite"></div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="login-btn">Log in</button>
+        </form>
+
+        <p class="switch-auth">Don't have an account? <a href="signup.html">Sign up</a></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
